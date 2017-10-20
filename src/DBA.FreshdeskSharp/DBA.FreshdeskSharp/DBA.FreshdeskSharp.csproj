@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.6</TargetFramework>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Greg Cobb</Authors>
+    <Company>DBA Software, Inc.</Company>
+    <Description>Wrapper for Freshdesk API v2</Description>
+    <PackageProjectUrl>https://github.com/dbasoftware/freshdesksharp/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/dbasoftware/freshdesksharp/</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>freshdesk</PackageTags>
+    <Version>0.1.0</Version>
+    <PackageLicenseUrl>https://github.com/dbasoftware/freshdesksharp/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageId>FreshdeskSharp</PackageId>
+    <Product>FreshdeskSharp</Product>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="NETStandard.Library" Version="1.6.0" />
+  </ItemGroup>
+
+</Project>
