@@ -15,7 +15,7 @@ namespace DBA.FreshdeskSharp.Serialization
         private readonly List<string> _nonSerializableTicketProps;
         private readonly Type _contactType = typeof(FreshdeskContactInternalBase<>);
         private readonly Type _companyType = typeof(FreshdeskCompanyBase);
-        private readonly Type _ticketType = typeof(FreshdeskTicket<>);
+        private readonly Type _ticketType = typeof(FreshdeskTicketBase);
         
         public FreshdeskContractResolver(FreshdeskConfigInternal config)
         {
@@ -67,9 +67,11 @@ namespace DBA.FreshdeskSharp.Serialization
             var type = property.DeclaringType.IsConstructedGenericType
                 ? property.DeclaringType.GetGenericTypeDefinition()
                 : property.DeclaringType;
+            var isTicketType = IsTypeDerivedFrom(type, _ticketType);
+            var containsProp = _nonSerializableTicketProps.Contains(property.PropertyName);
             if (IsTypeDerivedFrom(type, _contactType) && _nonSerializableContactProps.Contains(property.PropertyName) ||
                 IsTypeDerivedFrom(type, _companyType) && _nonSerializableCompanyProps.Contains(property.PropertyName) ||
-                IsTypeDerivedFrom(type, _ticketType) && _nonSerializableTicketProps.Contains(property.PropertyName))
+                isTicketType && _nonSerializableTicketProps.Contains(property.PropertyName))
             {
                 property.ShouldSerialize = instance => false;
             }

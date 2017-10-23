@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using DBA.FreshdeskSharp.Models;
-using DBA.FreshdeskSharp.Models.Abstractions;
-using DBA.FreshdeskSharp.Serialization;
-using Newtonsoft.Json;
 
 namespace DBA.FreshdeskSharp.Examples
 {
@@ -32,20 +28,22 @@ namespace DBA.FreshdeskSharp.Examples
                     var result = await client.Contacts.GetListAsync();
                     var account = await client.Companies.CreateAsync(new FreshdeskCompany
                     {
-                        Name = "Fake Company 8, Inc."
+                        Name = "Fake Company Name, Inc."
                     });
                     var contact = await client.Contacts.CreateAsync(new FreshdeskContact
                     {
                         Active = true,
-                        Name = "Mr User 6",
-                        Email = "fakeusername7@fakedomain.com",
+                        Name = "Mr User Name",
+                        Email = "fakeusername1234@fakedomain.com",
                         CompanyId = account.Id
                     });
-                    var ticket = await client.Tickets.CreateAsync(new FreshdeskTicket()
+                    var ticket = await client.Tickets.CreateAsync(new FreshdeskTicket
                     {
                         RequesterId = contact.Id,
                         Subject = "Test",
-                        Description = "This is a test issue"
+                        Description = "This is a test issue",
+                        FrDueBy = DateTime.UtcNow + TimeSpan.FromHours(5),
+                        DueBy = DateTime.UtcNow + TimeSpan.FromDays(2)
                     });
                 }
                 catch (Exception ex)
