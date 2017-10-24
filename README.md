@@ -28,7 +28,7 @@ var config = new FreshdeskConfig
 };
 ```
 
-The Freshdesk API has different throttling restrictions depending on which plan you are paying for.  Once you have made more requests than the allotted requests per hour, you will receive an error on subsequent requests until enough time has passed.  If you would like the client, when encountering error response, to wait for the required amount of time then retry the request instead of throwing an error, you can turn on the ```RetryWhenThrottled``` setting in the config by doing the following:
+The Freshdesk API has different throttling restrictions depending on which plan you are paying for.  Once you have made more requests than the allotted requests per hour, you will receive an error on subsequent requests until enough time has passed.  If you would like the client, when encountering an error response, to wait for the required amount of time then retry the request instead of throwing an error, you can turn on the ```RetryWhenThrottled``` setting in the config by doing the following:
 
 ```cs
 var config = new FreshdeskConfig
@@ -64,7 +64,7 @@ using (var client = new FreshdeskClient(config))
 
 ### An Example ###
 
-The Freshdesk endpoints are exposed via properties on the client.  All endpoint calls are done through asynchronous calls.  For instance if you wanted to get a list of contacts you could do the following:
+The Freshdesk endpoints are exposed via properties on the client.  All endpoint calls are done through asynchronous calls.  For example if you wanted to get a list of contacts you could do the following:
 
 ```cs
 using (var client = new FreshdeskClient(config))
