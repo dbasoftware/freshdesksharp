@@ -2,9 +2,24 @@
 
 FreshdeskSharp is a .NET wrapper for the Freshdesk API (v2).  It is written using .NET Standard 1.6, which means FreshdeskSharp can be used be used in .NET projects written in C#, F#, and VB.NET with the full .NET framework on Windows, with Xamarin for iOS or Android, or in a .NET Core project on Windows, Linux, or Mac OS.  This library was initially created by [Greg Cobb](http://www.developerstome.com) in order to meet the needs of DBA Software in supporting our [DBA Manufacturing](https://www.dbamanufacturing.com) customers.  Because of this, at this time it does not fully cover the entire Freshdesk API surface.  If you find yourself wanting to use this library, but need additional API endpoints to be added to be able to do so, please put in an issue and I will try my best to accommodate you.  Hopefully the documentation and examples below are enough to get you started, but if you need more help understanding how the library works feel free to put in an issue requesting help.
 
+## Installation ##
+
+If you wish to modify the FreshdeskSharp library, you may obtain the source code by cloning this repository.  If you instead wish to just use FreshdeskSharp in your project without modifying it, then the easist way to use FreshdeskSharp is to include it in your project using Nuget.  Either search for FreshdeskSharp on the Nuget Package Manager gui or type the following in the Nuget Package Manager Console:
+
+```shell
+Install-Package FreshdeskSharp
+```
+
 ## Usage ##
 
 ### Configuration ###
+
+First make sure you are including the library in your source code file.
+
+```cs
+using DBA.FreshdeskSharp;
+using DBA.FreshdeskSharp.Models;
+```
 
 For credentials you can either use password:
 
