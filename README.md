@@ -28,7 +28,7 @@ var config = new FreshdeskConfig
 };
 ```
 
-Lastly, the Freshdesk API has different throttling restrictions depending on which plan you are paying for.  Once you have made more requests than the allotted requests per hour, you will receive an error on subsequent requests until enough time has passed.  If you would like the client, when encountering error response, to wait for the required amount of time then retry the request instead of throwing an error, you can turn on the ```RetryWhenThrottled``` setting in the config by doing the following:
+The Freshdesk API has different throttling restrictions depending on which plan you are paying for.  Once you have made more requests than the allotted requests per hour, you will receive an error on subsequent requests until enough time has passed.  If you would like the client, when encountering error response, to wait for the required amount of time then retry the request instead of throwing an error, you can turn on the ```RetryWhenThrottled``` setting in the config by doing the following:
 
 ```cs
 var config = new FreshdeskConfig
