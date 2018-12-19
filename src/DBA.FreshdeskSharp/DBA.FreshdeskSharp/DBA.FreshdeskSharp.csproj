@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
@@ -11,7 +11,7 @@
     <RepositoryUrl>https://github.com/dbasoftware/freshdesksharp/</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>freshdesk</PackageTags>
-    <Version>0.1.0</Version>
+    <Version>0.2.0</Version>
     <PackageLicenseUrl>https://github.com/dbasoftware/freshdesksharp/blob/master/LICENSE</PackageLicenseUrl>
     <PackageId>FreshdeskSharp</PackageId>
     <Product>FreshdeskSharp</Product>
