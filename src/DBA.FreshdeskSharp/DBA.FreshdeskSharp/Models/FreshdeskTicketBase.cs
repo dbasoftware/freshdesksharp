@@ -62,9 +62,9 @@ namespace DBA.FreshdeskSharp.Models
         [JsonProperty("updated_at")]
         public DateTime UpdatedAt { get; set; }
         [JsonProperty("due_by")]
-        public DateTime DueBy { get; set; }
+        public DateTime? DueBy { get; set; }
         [JsonProperty("fr_due_by")]
-        public DateTime FrDueBy { get; set; }
+        public DateTime? FrDueBy { get; set; }
         [JsonProperty("description_text")]
         public string DescriptionText { get; set; }
         public string Description { get; set; }
