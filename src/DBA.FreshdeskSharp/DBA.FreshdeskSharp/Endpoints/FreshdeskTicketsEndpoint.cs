@@ -125,7 +125,7 @@ namespace DBA.FreshdeskSharp.Endpoints
             }
             if (options.UpdatedSince != default(DateTime?))
             {
-                filters.Add($"updated_since={options.UpdatedSince.Value}");
+                filters.Add($"updated_since={options.UpdatedSince.Value:yyyy-MM-dd}");
             }
             filters.Add($"order_by={options.OrderBy.ToOrderByString()}");
             filters.Add($"order_type={options.OrderType.ToString().ToLower()}");
