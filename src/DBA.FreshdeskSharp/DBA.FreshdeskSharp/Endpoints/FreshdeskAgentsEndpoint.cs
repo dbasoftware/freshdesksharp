@@ -67,11 +67,11 @@ namespace DBA.FreshdeskSharp.Endpoints
             {
                 filters.Add($"email={WebUtility.UrlEncode(options.Email)}");
             }
-            if (options.Email != default(string))
+            if (options.Mobile != default(string))
             {
                 filters.Add($"mobile={WebUtility.UrlEncode(options.Mobile)}");
             }
-            if (options.Email != default(string))
+            if (options.Phone != default(string))
             {
                 filters.Add($"phone={WebUtility.UrlEncode(options.Phone)}");
             }
