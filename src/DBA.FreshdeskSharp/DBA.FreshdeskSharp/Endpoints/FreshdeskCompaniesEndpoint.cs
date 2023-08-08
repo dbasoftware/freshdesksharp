@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -79,6 +80,20 @@ namespace DBA.FreshdeskSharp.Endpoints
             using (var response = await _httpClient.DeleteAsync(requestUri).ConfigureAwait(false))
             {
                 await GetResponseAsync(response).ConfigureAwait(false);
+            }
+        }
+        public async Task<FreshdeskCompanySearchResults<FreshdeskCustomFields>> SearchAsync(string searchQuery)
+        {
+            return await SearchAsync<FreshdeskCustomFields>(searchQuery).ConfigureAwait(false);
+        }
+
+        public async Task<FreshdeskCompanySearchResults<TCustomFieldObject>> SearchAsync<TCustomFieldObject>(string searchQuery) where TCustomFieldObject : class
+        {
+            var query = $"?query=\"{WebUtility.UrlEncode(searchQuery)}\"";
+            var requestUri = $"{_apiBaseUri}/search/companies{query}";
+            using (var response = await _httpClient.GetAsync(requestUri).ConfigureAwait(false))
+            {
+                return await GetResponseAsync<FreshdeskCompanySearchResults<TCustomFieldObject>>(response).ConfigureAwait(false);
             }
         }
 
