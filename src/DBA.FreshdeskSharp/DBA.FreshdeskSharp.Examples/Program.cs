@@ -11,6 +11,7 @@ namespace DBA.FreshdeskSharp.Examples
             const string freshdeskDomain = "YOUR_DOMAIN_NAME.freshdesk.com";
             const string freshdeskApiKey = "YOUR_API_KEY";
             GetAllContactsAsync(freshdeskDomain, freshdeskApiKey).GetAwaiter().GetResult();
+            GetAllAgentsAsync(freshdeskDomain, freshdeskApiKey).GetAwaiter().GetResult();
         }
 
         private static async Task GetAllContactsAsync(string domain, string apiKey)
@@ -45,6 +46,27 @@ namespace DBA.FreshdeskSharp.Examples
                         FrDueBy = DateTime.UtcNow + TimeSpan.FromHours(5),
                         DueBy = DateTime.UtcNow + TimeSpan.FromDays(2)
                     });
+                }
+                catch (Exception ex)
+                {
+                    throw;
+                }
+            }
+        }
+
+        private static async Task GetAllAgentsAsync(string domain, string apiKey)
+        {
+            var config = new FreshdeskConfig
+            {
+                Domain = domain,
+                Credentials = new FreshdeskCredentials(apiKey),
+                RetryWhenThrottled = true
+            };
+            using (var client = new FreshdeskClient(config))
+            {
+                try
+                {
+                    var agents = await client.Agents.GetListAsync(new FreshdeskAgentsListOptions());
                 }
                 catch (Exception ex)
                 {

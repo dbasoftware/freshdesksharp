@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.6;net45</TargetFrameworks>
+    <TargetFrameworks>netstandard1.6.1;net48</TargetFrameworks>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Greg Cobb</Authors>
@@ -10,24 +10,24 @@
     <RepositoryUrl>https://github.com/dbasoftware/freshdesksharp/</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>freshdesk</PackageTags>
-    <Version>0.2.1</Version>
+    <Version>0.3.0</Version>
     <PackageLicenseUrl>https://github.com/dbasoftware/freshdesksharp/blob/master/LICENSE</PackageLicenseUrl>
     <PackageId>FreshdeskSharp</PackageId>
     <Product>FreshdeskSharp</Product>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(TargetFramework)'=='net45'">
-    <AssemblyTitle>FreshdeskSharp .NET 4.5</AssemblyTitle>
+  <PropertyGroup Condition="'$(TargetFramework)'=='net48'">
+    <AssemblyTitle>FreshdeskSharp .NET 4.8</AssemblyTitle>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(TargetFramework)'=='netstandard1.6'">
-    <AssemblyTitle>FreshdeskSharp .NET Standard 1.6</AssemblyTitle>
+  <PropertyGroup Condition="'$(TargetFramework)'=='netstandard1.6.1'">
+    <AssemblyTitle>FreshdeskSharp .NET Standard 1.6.1</AssemblyTitle>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="System.Net.Http" Condition="'$(TargetFramework)' == 'net45'" />
+    <Reference Include="System.Net.Http" Condition="'$(TargetFramework)' == 'net48'" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Update="NETStandard.Library" Condition="'$(TargetFramework)' == 'netstandard1.6'" Version="1.6.0" />
+    <PackageReference Update="NETStandard.Library" Condition="'$(TargetFramework)' == 'netstandard1.6.1'" Version="1.6.1" />
   </ItemGroup>
 </Project>
