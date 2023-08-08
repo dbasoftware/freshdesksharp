@@ -77,14 +77,22 @@ namespace DBA.FreshdeskSharp.Endpoints
             }
         }
 
-        public async Task<FreshdeskTicketSearchResults<FreshdeskCustomFields>> SearchAsync(string searchQuery)
+        public async Task<FreshdeskTicketSearchResults<FreshdeskCustomFields>> SearchAsync(string searchQuery, int page = -1, int perPage = -1)
         {
-            return await SearchAsync<FreshdeskCustomFields>(searchQuery).ConfigureAwait(false);
+            return await SearchAsync<FreshdeskCustomFields>(searchQuery, page, perPage).ConfigureAwait(false);
         }
 
-        public async Task<FreshdeskTicketSearchResults<TCustomFieldObject>> SearchAsync<TCustomFieldObject>(string searchQuery) where TCustomFieldObject : class
+        public async Task<FreshdeskTicketSearchResults<TCustomFieldObject>> SearchAsync<TCustomFieldObject>(string searchQuery, int page = -1, int perPage = -1) where TCustomFieldObject : class
         {
             var query = $"?query=\"{WebUtility.UrlEncode(searchQuery)}\"";
+            if (page != -1)
+            {
+                query += $"&page={page}";
+                if (perPage != -1)
+                {
+                    query += $"&per_page={perPage}";
+                }
+            }
             var requestUri = $"{_apiBaseUri}/search/tickets{query}";
             using (var response = await _httpClient.GetAsync(requestUri).ConfigureAwait(false))
             {
@@ -92,23 +100,23 @@ namespace DBA.FreshdeskSharp.Endpoints
             }
         }
 
-        public async Task<FreshdeskTicketSearchResults<FreshdeskCustomFields>> SearchAsync(Expression<Func<IFreshdeskTicketQuery, bool>> searchQuery)
+        public async Task<FreshdeskTicketSearchResults<FreshdeskCustomFields>> SearchAsync(Expression<Func<IFreshdeskTicketQuery, bool>> searchQuery, int page = -1, int perPage = -1)
         {
-            return await SearchAsync<FreshdeskCustomFields>(searchQuery).ConfigureAwait(false);
+            return await SearchAsync<FreshdeskCustomFields>(searchQuery, page, perPage).ConfigureAwait(false);
         }
 
-        public async Task<FreshdeskTicketSearchResults<TCustomFieldObject>> SearchAsync<TCustomFieldObject>(Expression<Func<IFreshdeskTicketQuery, bool>> searchQuery) where TCustomFieldObject : class
+        public async Task<FreshdeskTicketSearchResults<TCustomFieldObject>> SearchAsync<TCustomFieldObject>(Expression<Func<IFreshdeskTicketQuery, bool>> searchQuery, int page = -1, int perPage = -1) where TCustomFieldObject : class
         {
             var searchQueryExp = FreshdeskTicketSearchQueryBuilder.Build(searchQuery);
-            return await SearchAsync<TCustomFieldObject>(searchQueryExp).ConfigureAwait(false);
+            return await SearchAsync<TCustomFieldObject>(searchQueryExp, page, perPage).ConfigureAwait(false);
         }
 
-        public async Task<FreshdeskTicketSearchResults<TCustomFieldObject>> SearchAsync<TCustomFieldObject, TTicketQueryFields>(Expression<Func<TTicketQueryFields, bool>> searchQuery) 
+        public async Task<FreshdeskTicketSearchResults<TCustomFieldObject>> SearchAsync<TCustomFieldObject, TTicketQueryFields>(Expression<Func<TTicketQueryFields, bool>> searchQuery, int page = -1, int perPage = -1) 
             where TTicketQueryFields : IFreshdeskTicketQuery 
             where TCustomFieldObject : class
         {
             var searchQueryExp = FreshdeskTicketSearchQueryBuilder.Build(searchQuery);
-            return await SearchAsync<TCustomFieldObject>(searchQueryExp).ConfigureAwait(false);
+            return await SearchAsync<TCustomFieldObject>(searchQueryExp, page, perPage).ConfigureAwait(false);
         }
 
         private static string GetListQueryString(FreshdeskTicketListOptions options)
