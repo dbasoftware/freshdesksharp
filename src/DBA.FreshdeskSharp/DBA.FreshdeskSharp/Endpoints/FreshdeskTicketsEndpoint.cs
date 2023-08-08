@@ -37,6 +37,17 @@ namespace DBA.FreshdeskSharp.Endpoints
             }
         }
 
+        public async Task<FreshdeskOutboundEmail<TCustomFieldObject>> CreateEmailAsync<TCustomFieldObject>(FreshdeskOutboundEmail<TCustomFieldObject> ticket) where TCustomFieldObject : class
+        {
+            var requestJson = JsonConvert.SerializeObject(ticket, _serializationSettings);
+            var requestUri = $"{_apiBaseUri}/tickets/outbound_email";
+            using (var requestContent = new StringContent(requestJson, Encoding.UTF8, "application/json"))
+            using (var response = await _httpClient.PostAsync(requestUri, requestContent).ConfigureAwait(false))
+            {
+                return await GetResponseAsync<FreshdeskOutboundEmail<TCustomFieldObject>>(response).ConfigureAwait(false);
+            }
+        }
+
         public async Task<FreshdeskTicket<FreshdeskCustomFields>> GetAsync(ulong id)
         {
             return await GetAsync<FreshdeskCustomFields>(id).ConfigureAwait(false);
