@@ -33,6 +33,7 @@ namespace DBA.FreshdeskSharp
             Companies = new FreshdeskCompaniesEndpoint(config, _httpClient, settings);
             Tickets = new FreshdeskTicketsEndpoint(config, _httpClient, settings);
             Agents = new FreshdeskAgentsEndpoint(config, _httpClient, settings);
+            CannedResponses = new FreshdeskCannedResponsesEndpoint(config, _httpClient, settings);
         }
 
         public FreshdeskContactsEndpoint Contacts { get; private set; }
@@ -42,6 +43,8 @@ namespace DBA.FreshdeskSharp
         public FreshdeskTicketsEndpoint Tickets { get; private set; }
 
         public FreshdeskAgentsEndpoint Agents { get; private set; }
+
+        public FreshdeskCannedResponsesEndpoint CannedResponses { get; private set; }
 
         public void Dispose()
         {
